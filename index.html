@@ -419,54 +419,87 @@
   </section>
   <section class="form-body">
     <div class="fcard-wrap">
-      <form id="seek-form" onsubmit="submitF(event,'seek-form','seek-ok')">
-        <div class="fg">
-          <div class="fg-title">STUDENT NAME</div>
-          <div class="f2">
-            <div class="fwrap"><label class="flabel">First Name <span class="req">*</span></label><input class="finput" type="text" placeholder="First name" required></div>
-            <div class="fwrap"><label class="flabel">Last Name <span class="req">*</span></label><input class="finput" type="text" placeholder="Last name" required></div>
-          </div>
+  <form id="seek-form" action="https://formspree.io/f/xwvnzadw" method="POST">
+    <!-- STUDENT NAME -->
+    <div class="fg">
+      <div class="fg-title">STUDENT NAME</div>
+      <div class="f2">
+        <div class="fwrap">
+          <label class="flabel">First Name <span class="req">*</span></label>
+          <input class="finput" type="text" name="student_first_name" placeholder="First name" required>
         </div>
-        <div class="fg">
-          <div class="fg-title">PARENT / GUARDIAN NAME</div>
-          <div class="f2">
-            <div class="fwrap"><label class="flabel">First Name <span class="req">*</span></label><input class="finput" type="text" placeholder="First name" required></div>
-            <div class="fwrap"><label class="flabel">Last Name <span class="req">*</span></label><input class="finput" type="text" placeholder="Last name" required></div>
-          </div>
+        <div class="fwrap">
+          <label class="flabel">Last Name <span class="req">*</span></label>
+          <input class="finput" type="text" name="student_last_name" placeholder="Last name" required>
         </div>
-        <div class="fg">
-          <div class="fwrap"><label class="flabel">Email <span class="req">*</span></label><input class="finput" type="email" placeholder="your@email.com" required></div>
-        </div>
-        <div class="fg">
-          <div class="fwrap">
-            <label class="flabel">Student Year Level <span class="req">*</span></label>
-            <select class="fselect" required>
-              <option value="" disabled selected>Select year level</option>
-              <option>Prep / Foundation</option>
-              <option>Year 1</option><option>Year 2</option><option>Year 3</option>
-              <option>Year 4</option><option>Year 5</option><option>Year 6</option>
-              <option>Year 7</option><option>Year 8</option><option>Year 9</option>
-              <option>Year 10</option><option>Year 11</option><option>Year 12</option>
-            </select>
-          </div>
-        </div>
-        <div class="fg">
-          <div class="fwrap"><label class="flabel">Subjects Needing Support</label><input class="finput" type="text" placeholder="e.g. Maths, English, Science"></div>
-        </div>
-        <div class="fg">
-          <div class="fwrap">
-            <label class="flabel">Learning Needs or Conditions <span class="flabel-opt">(Optional)</span></label>
-            <textarea class="ftextarea" placeholder="Share anything that helps us support the student better..."></textarea>
-          </div>
-        </div>
-        <p class="fnote">After you submit, our team will review the request and contact you when a suitable tutor is available. All tutoring is provided <strong>free of charge</strong>.</p>
-        <button type="submit" class="fsub">Submit Request</button>
-      </form>
-      <div class="success" id="seek-ok">
-        <span class="ck">✓</span>
-        <p>Thank you! We've received your request and will be in touch when a suitable tutor becomes available.</p>
       </div>
     </div>
+
+    <!-- PARENT / GUARDIAN NAME -->
+    <div class="fg">
+      <div class="fg-title">PARENT / GUARDIAN NAME</div>
+      <div class="f2">
+        <div class="fwrap">
+          <label class="flabel">First Name <span class="req">*</span></label>
+          <input class="finput" type="text" name="parent_first_name" placeholder="First name" required>
+        </div>
+        <div class="fwrap">
+          <label class="flabel">Last Name <span class="req">*</span></label>
+          <input class="finput" type="text" name="parent_last_name" placeholder="Last name" required>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="fg">
+      <div class="fwrap">
+        <label class="flabel">Email <span class="req">*</span></label>
+        <input class="finput" type="email" name="email" placeholder="your@email.com" required>
+      </div>
+    </div>
+
+    <!-- STUDENT YEAR LEVEL -->
+    <div class="fg">
+      <div class="fwrap">
+        <label class="flabel">Student Year Level <span class="req">*</span></label>
+        <select class="fselect" name="year_level" required>
+          <option value="" disabled selected>Select year level</option>
+          <option>Prep / Foundation</option>
+          <option>Year 1</option><option>Year 2</option><option>Year 3</option>
+          <option>Year 4</option><option>Year 5</option><option>Year 6</option>
+          <option>Year 7</option><option>Year 8</option><option>Year 9</option>
+          <option>Year 10</option><option>Year 11</option><option>Year 12</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SUBJECTS -->
+    <div class="fg">
+      <div class="fwrap">
+        <label class="flabel">Subjects Needing Support</label>
+        <input class="finput" type="text" name="subjects" placeholder="e.g. Maths, English, Science">
+      </div>
+    </div>
+
+    <!-- LEARNING NEEDS -->
+    <div class="fg">
+      <div class="fwrap">
+        <label class="flabel">Learning Needs or Conditions <span class="flabel-opt">(Optional)</span></label>
+        <textarea class="ftextarea" name="learning_needs" placeholder="Share anything that helps us support the student better..."></textarea>
+      </div>
+    </div>
+
+    <p class="fnote">After you submit, our team will review the request and contact you when a suitable tutor is available. All tutoring is provided <strong>free of charge</strong>.</p>
+
+    <button type="submit" class="fsub">Submit Request</button>
+  </form>
+
+  <!-- SUCCESS MESSAGE -->
+  <div class="success" id="seek-ok">
+    <span class="ck">✓</span>
+    <p>Thank you! We’ve received your request and will be in touch soon with a suitable tutor.</p>
+  </div>
+</div>
   </section>
   <footer>
     <div class="foot-in">
