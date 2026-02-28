@@ -501,43 +501,72 @@
       <p>You don't need formal teaching experience. What matters most is <strong>patience, reliability, and a willingness to support students respectfully and consistently.</strong></p>
     </div>
     <div class="fcard-wrap">
-      <form id="vol-form" onsubmit="submitF(event,'vol-form','vol-ok')">
-        <div class="fg">
-          <div class="fg-title">YOUR NAME</div>
-          <div class="f2">
-            <div class="fwrap"><label class="flabel">First Name <span class="req">*</span></label><input class="finput" type="text" placeholder="First name" required></div>
-            <div class="fwrap"><label class="flabel">Last Name <span class="req">*</span></label><input class="finput" type="text" placeholder="Last name" required></div>
-          </div>
+      <div class="fcard-wrap">
+  <form id="vol-form" action="https://formspree.io/f/maqdkazr" method="POST">
+    <div class="fg">
+      <div class="fg-title">YOUR NAME</div>
+      <div class="f2">
+        <div class="fwrap">
+          <label class="flabel">First Name <span class="req">*</span></label>
+          <input class="finput" type="text" name="first_name" placeholder="First name" required>
         </div>
-        <div class="fg">
-          <div class="fwrap"><label class="flabel">Email <span class="req">*</span></label><input class="finput" type="email" placeholder="your@email.com" required></div>
+        <div class="fwrap">
+          <label class="flabel">Last Name <span class="req">*</span></label>
+          <input class="finput" type="text" name="last_name" placeholder="Last name" required>
         </div>
-        <div class="fg">
-          <div class="fwrap"><label class="flabel">School / University <span class="req">*</span></label><input class="finput" type="text" placeholder="e.g. University of Melbourne" required></div>
-        </div>
-        <div class="fg">
-          <div class="fwrap"><label class="flabel">Year Level / Degree <span class="req">*</span></label><input class="finput" type="text" placeholder="e.g. Year 12 / Bachelor of Arts" required></div>
-        </div>
-        <div class="fg">
-          <div class="fwrap"><label class="flabel">Subjects You Can Tutor <span class="req">*</span></label><input class="finput" type="text" placeholder="e.g. Maths, English, Biology" required></div>
-        </div>
-        <div class="fg">
-          <div class="fwrap">
-            <label class="flabel">Preferred Tutoring Format <span class="req">*</span></label>
-            <select class="fselect" required>
-              <option value="" disabled selected>Select format</option>
-              <option>In-Person</option><option>Online</option><option>No Preference</option>
-            </select>
-          </div>
-        </div>
-        <div class="fg">
-          <div class="fwrap">
-            <label class="flabel">Message <span class="req">*</span></label>
-            <textarea class="ftextarea" placeholder="Tell us a little about yourself — why do you want to volunteer with Ripple?" required></textarea>
-          </div>
-        </div>
-        <button type="submit" class="fsub">Submit Application</button>
-      </form>
+      </div>
+    </div>
+
+    <div class="fg">
+      <div class="fwrap">
+        <label class="flabel">Email <span class="req">*</span></label>
+        <input class="finput" type="email" name="email" placeholder="your@email.com" required>
+      </div>
+    </div>
+
+    <div class="fg">
+      <div class="fwrap">
+        <label class="flabel">School / University <span class="req">*</span></label>
+        <input class="finput" type="text" name="school" placeholder="e.g. University of Melbourne" required>
+      </div>
+    </div>
+
+    <div class="fg">
+      <div class="fwrap">
+        <label class="flabel">Year Level / Degree <span class="req">*</span></label>
+        <input class="finput" type="text" name="year_level" placeholder="e.g. Year 12 / Bachelor of Arts" required>
+      </div>
+    </div>
+
+    <div class="fg">
+      <div class="fwrap">
+        <label class="flabel">Subjects You Can Tutor <span class="req">*</span></label>
+        <input class="finput" type="text" name="subjects" placeholder="e.g. Maths, English, Biology" required>
+      </div>
+    </div>
+
+    <div class="fg">
+      <div class="fwrap">
+        <label class="flabel">Preferred Tutoring Format <span class="req">*</span></label>
+        <select class="fselect" name="format" required>
+          <option value="" disabled selected>Select format</option>
+          <option>In-Person</option>
+          <option>Online</option>
+          <option>No Preference</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="fg">
+      <div class="fwrap">
+        <label class="flabel">Message <span class="req">*</span></label>
+        <textarea class="ftextarea" name="message" placeholder="Tell us a little about yourself — why do you want to volunteer with Ripple?" required></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="fsub">Submit Application</button>
+  </form>
+</div>
       <div class="success" id="vol-ok">
         <span class="ck">✓</span>
         <p>Thank you for applying! We'll be in touch with more details about getting started.</p>
