@@ -596,11 +596,13 @@
       </div>
     </div>
 
+    <p class="fnote">After you submit, a member of our team will be in touch to arrange a <strong>short, friendly conversation</strong> - a chance for us to get to know you, answer any questions, and talk through the details before you're matched with a student.</p>
+
     <button type="submit" class="fsub">Submit Application</button>
   </form>
       <div class="success" id="vol-ok">
         <span class="ck">✓</span>
-        <p>Thank you for applying! We'll be in touch with more details about getting started.</p>
+        <p>Thank you for applying! A member of our team will reach out soon to arrange a conversation and talk through the next steps.</p>
       </div>
     </div>
   </section>
@@ -629,7 +631,14 @@
   const pages = { home:'p-home', about:'p-about', seek:'p-seek', vol:'p-vol' };
   const navIds = { home:'n-home', about:'n-about', seek:'n-seek', vol:'n-vol' };
 
-  function go(key) {
+  /* ===== HASH ROUTING =====
+     Each page has its own URL: yoursite.edu/#home, #about, #seek-support, #volunteer.
+     Direct links, bookmarks, and the browser back/forward buttons all work. */
+  const keyToSlug = { home:'home', about:'about', seek:'seek-support', vol:'volunteer' };
+  const slugToKey = { 'home':'home', 'about':'about', 'seek-support':'seek', 'volunteer':'vol' };
+
+  function render(key) {
+    if (!pages[key]) key = 'home';
     Object.values(pages).forEach(id => document.getElementById(id).classList.remove('active'));
     document.getElementById(pages[key]).classList.add('active');
     Object.values(navIds).forEach(id => { const el = document.getElementById(id); if(el) el.classList.remove('active'); });
@@ -637,6 +646,20 @@
     if (nav) nav.classList.add('active');
     window.scrollTo(0, 0);
   }
+
+  function go(key) {
+    const slug = keyToSlug[key] || 'home';
+    if (location.hash === '#' + slug) { render(key); return; }
+    location.hash = slug; /* fires hashchange -> render */
+  }
+
+  function routeFromHash() {
+    const slug = location.hash.replace(/^#\/?/, '');
+    render(slugToKey[slug] || 'home');
+  }
+
+  window.addEventListener('hashchange', routeFromHash);
+  routeFromHash(); /* render the correct page on first load or direct link */
 
   /* ===== GOOGLE APPS SCRIPT SUBMISSION =====
      Paste your two deployed Web App URLs below.
