@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -181,6 +180,7 @@
   .fnote strong { color: var(--teal); font-weight: 600; }
   .fsub { width: 100%; padding: 0.9rem; background: var(--teal); color: white; border: none; border-radius: 0.75rem; font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.15s, transform 0.1s; }
   .fsub:hover { background: var(--teal-dark); transform: translateY(-1px); }
+  .fsub:disabled { opacity: 0.6; cursor: default; transform: none; }
   .success { display: none; text-align: center; padding: 2.5rem 1rem; }
   .success .ck { font-size: 3rem; margin-bottom: 1rem; display: block; color: var(--teal); }
   .success p { color: var(--text-mid); font-size: 1rem; line-height: 1.65; }
@@ -419,7 +419,7 @@
   </section>
   <section class="form-body">
     <div class="fcard-wrap">
-  <form id="seek-form" action="https://formspree.io/f/xwvnzadw" method="POST">
+  <form id="seek-form">
     <!-- STUDENT NAME -->
     <div class="fg">
       <div class="fg-title">STUDENT NAME</div>
@@ -534,8 +534,7 @@
       <p>You don't need formal teaching experience. What matters most is <strong>patience, reliability, and a willingness to support students respectfully and consistently.</strong></p>
     </div>
     <div class="fcard-wrap">
-      <div class="fcard-wrap">
-  <form id="vol-form" action="https://formspree.io/f/maqdkazr" method="POST">
+  <form id="vol-form">
     <div class="fg">
       <div class="fg-title">YOUR NAME</div>
       <div class="f2">
@@ -599,7 +598,6 @@
 
     <button type="submit" class="fsub">Submit Application</button>
   </form>
-</div>
       <div class="success" id="vol-ok">
         <span class="ck">✓</span>
         <p>Thank you for applying! We'll be in touch with more details about getting started.</p>
@@ -640,11 +638,39 @@
     window.scrollTo(0, 0);
   }
 
-  function submitF(e, formId, okId) {
-    e.preventDefault();
-    document.getElementById(formId).style.display = 'none';
-    document.getElementById(okId).style.display = 'block';
+  /* ===== GOOGLE APPS SCRIPT SUBMISSION =====
+     Paste your two deployed Web App URLs below.
+     Each one comes from: Extensions > Apps Script > Deploy > New deployment > Web app. */
+  const SEEK_SCRIPT_URL = 'PASTE_SEEK_SUPPORT_WEB_APP_URL_HERE';
+  const VOL_SCRIPT_URL  = 'PASTE_VOLUNTEER_WEB_APP_URL_HERE';
+
+  function wireForm(formId, okId, url) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const btn = form.querySelector('.fsub');
+      const originalText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Submitting…';
+      try {
+        await fetch(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: new URLSearchParams(new FormData(form))
+        });
+        form.style.display = 'none';
+        document.getElementById(okId).style.display = 'block';
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = originalText;
+        alert('Something went wrong submitting the form. Please check your connection and try again.');
+      }
+    });
   }
+
+  wireForm('seek-form', 'seek-ok', SEEK_SCRIPT_URL);
+  wireForm('vol-form', 'vol-ok', VOL_SCRIPT_URL);
 </script>
 </body>
 </html>
